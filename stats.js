@@ -189,18 +189,10 @@ config.configFile(process.argv[2], function (config, oldConfig) {
 
         var key = '';
 
-        if (config.relaxMetricNameSanitation) {
-          // leave '/' characters intact in the metric name
-          key = bits.shift()
-                      .replace(/\s+/g, '_')
-                      .replace(/[^a-zA-Z_\/\-0-9\.]/g, '');
-        }
-        else {
-          key = bits.shift()
-                      .replace(/\s+/g, '_')
-                      .replace(/\//g, '-')
-                      .replace(/[^a-zA-Z_\-0-9\.]/g, '');
-        }
+        // leave '/' characters intact in the metric name
+        key = bits.shift()
+                    .replace(/\s+/g, '_')
+                    .replace(/[^a-zA-Z_\/\-0-9\.]/g, '');
 
         if (keyFlushInterval > 0) {
           if (! keyCounter[key]) {
